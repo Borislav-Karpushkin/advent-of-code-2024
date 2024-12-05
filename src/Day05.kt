@@ -23,6 +23,19 @@ fun main() {
         return pages.zipWithNext().none { (a, b) -> increasingRules[b]?.contains(a) == true }
     }
 
+    // Alternative way
+    fun fixOrderWithComparator(pages: List<Int>, increasingRules: MutableMap<Int, MutableSet<Int>>): List<Int> {
+       return pages.sortedWith(
+            Comparator { o1, o2 ->
+                when {
+                    increasingRules[o2]?.contains(o1) == true -> 1
+                    increasingRules[o1]?.contains(o2) == true -> -1
+                    else -> 0
+                }
+            }
+        )
+    }
+
     fun fixOrder(pages: List<Int>, increasingRules: MutableMap<Int, MutableSet<Int>>): List<Int> {
         val result = pages.toMutableList()
 
