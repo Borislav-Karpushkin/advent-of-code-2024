@@ -23,7 +23,6 @@ fun main() {
             stones = stones.flatMap { n ->
                 transform(n)
             }
-            println("$i: ${stones.size}")
         }
 
         return stones.size
